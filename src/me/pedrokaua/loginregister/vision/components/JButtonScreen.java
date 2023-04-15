@@ -1,4 +1,4 @@
-package me.pedrokaua.loginregister.vision;
+package me.pedrokaua.loginregister.vision.components;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -6,8 +6,11 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 
 public class JButtonScreen extends JButton implements MouseListener{
-
-    @Override
+	private static final long serialVersionUID = 1L;
+	
+	public JButtonScreen() {}
+	
+	@Override
     public void mouseClicked(MouseEvent arg0) {}
     public void mouseEntered(MouseEvent arg0) {}
     public void mouseExited(MouseEvent arg0) {}

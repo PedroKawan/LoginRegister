@@ -1,33 +1,48 @@
 package me.pedrokaua.loginregister.vision;
 
 import java.awt.Color;
+import java.awt.TextField;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-public class RegisterScreen extends Screen {
+import me.pedrokaua.loginregister.vision.components.JButtonScreen;
+import me.pedrokaua.loginregister.vision.components.JPasswordFieldScreen;
+import me.pedrokaua.loginregister.vision.components.TextFieldScreen;
 
-    TextFieldScreen nameComplete, nameUser, date, email;
+@SuppressWarnings("serial")
+public class RegisterScreen extends Screen {
+	TextFieldScreen nameComplete, nameUser, date, email;
     JPasswordFieldScreen password, confirm;
+    
     JLabel nameCompleteLabel, nameUserLabel, dateLabel, emailLabel, passwordLabel, confirmLabel;
+    
     JButton button;
+    
+    List<TextField> list;
     
     RegisterScreen(){
         define();
-        configLabel();
-        configButton();
-        configTextField();
+        creatingLabel();
+        cretingButton();
+        creatingTextField();
     }
     
     private void define() {
+    	// 'Screen' attributes
         labelLateral.setText("REGISTER");
         this.setTitle("REGISTER SCREEN");
         labelCentral.setText("Register");
+        imageLateral =
+        		new ImageIcon("C:/Users/PedroKawan/Documents/Projects/PedroKawan/LoginRegister/imagens/computer.png");
     }
 
-    private void configButton(){
+    private void cretingButton(){
+    	// Button 'Register now'
         button = new JButton();
         button.setText("Register now");
         button.setBounds(170, 475, 120, 30);
@@ -35,15 +50,16 @@ public class RegisterScreen extends Screen {
         button.setForeground(new Color(255, 255, 255));
         button.setBorder(BorderFactory.createBevelBorder(0));
         button.addMouseListener(new JButtonScreen(){
-            @Override
+			@Override
             public void mouseClicked(MouseEvent arg0) {
-                getInfos();
+                getInfo();
             }
         });
         this.add(button);
     }
 
-    private void configTextField(){
+    private void creatingTextField(){
+    	// TextFields
         nameComplete = new TextFieldScreen(this);
         nameComplete.setBounds(90, 120, 300, 30);
 
@@ -73,7 +89,8 @@ public class RegisterScreen extends Screen {
         this.setVisible(true);
     }
 
-    private void configLabel(){
+    private void creatingLabel(){
+    	// Labels ('Name' 'Email')
         nameCompleteLabel = new JLabel();
         nameCompleteLabel.setText("Name Complete");
         nameCompleteLabel.setBounds(90, 120 - 25, 100, 20);
@@ -112,6 +129,31 @@ public class RegisterScreen extends Screen {
         this.add(confirmLabel);
     }
 
+    @SuppressWarnings("deprecation")
+	@Override
+    public void getInfo() {
+    	//Info to DataBase
+    	StringBuilder sb = new StringBuilder();
+		sb.append(nameComplete.getText());
+		sb.append(";");
+		sb.append(nameUser.getText());
+		sb.append(";");
+		sb.append(date.getText());
+		sb.append(";");
+		sb.append(email.getText());
+		sb.append(";");
+		sb.append(password.getText());
+		
+		createFile(sb.toString());
+    }
+    
+    public void verifyFields() {}
+    
+    @Override
+    public void createFile(String info) {
+    	System.out.println(info);
+    }
+    
     public static void main(String[] args){
 		new RegisterScreen();
 	}

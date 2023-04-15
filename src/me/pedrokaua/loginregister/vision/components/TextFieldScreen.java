@@ -1,4 +1,4 @@
-package me.pedrokaua.loginregister.vision;
+package me.pedrokaua.loginregister.vision.components;
 
 import java.awt.Font;
 import java.awt.TextField;
@@ -7,14 +7,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class TextFieldScreen extends TextField implements MouseListener{
+import me.pedrokaua.loginregister.vision.RegisterScreen;
 
-    TextFieldScreen(RegisterScreen screen){
+public class TextFieldScreen extends TextField implements MouseListener{
+	private static final long serialVersionUID = 1L;
+	
+	public TextFieldScreen(RegisterScreen screen){
         this.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
         this.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent arg0) {
-                screen.getInfos();
+                screen.getInfo();
             }
 
         });
