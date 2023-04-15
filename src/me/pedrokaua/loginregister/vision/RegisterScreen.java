@@ -37,8 +37,12 @@ public class RegisterScreen extends Screen {
         labelLateral.setText("REGISTER");
         this.setTitle("REGISTER SCREEN");
         labelCentral.setText("Register");
-        imageLateral =
-        		new ImageIcon("C:/Users/PedroKawan/Documents/Projects/PedroKawan/LoginRegister/imagens/computer.png");
+        try {
+        	imageLateral =
+        			new ImageIcon("src/me/pedrokaua/loginregister/imagens/register.png");
+        }catch(Exception e) {
+        	System.out.println("add image path");
+        }
     }
 
     private void cretingButton(){

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 public abstract class Screen extends JFrame{
 	private static final long serialVersionUID = 1L;
 	protected ImageIcon imageLateral
-		= new ImageIcon("C:/Users/PedroKawan/Documents/Projects/PedroKawan/LoginRegister/imagens/user.png");
+		= new ImageIcon("src/me/pedrokaua/loginregister/imagens/computer.png");
 	
 	protected JPanel panelLateral;	
 	protected JPanel panelCentral;
@@ -53,7 +53,11 @@ public abstract class Screen extends JFrame{
 				g2d.setPaint(gradient);
 				g2d.fillRect(0, 0, 300, 600);
 				
-				g2d.drawImage(imageLateral .getImage(), 85, 200, null);
+				try {
+					g2d.drawImage(imageLateral.getImage(), 85, 200, null);
+		        }catch(Exception e) {
+		        	System.out.println("add image path");
+		        }
 			}
 		};
 		panelLateral.setSize(300, 600);
@@ -99,4 +103,5 @@ public abstract class Screen extends JFrame{
 	public abstract void verifyFields();
 	
 	public abstract void createFile(String info);
+	
 }
