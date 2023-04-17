@@ -32,7 +32,7 @@ public class RegisterScreen extends Screen {
         creatingTextField();
     }
     
-    private void define() {
+    void define() {
     	// 'Screen' attributes
         labelLateral.setText("REGISTER");
         this.setTitle("REGISTER SCREEN");
@@ -45,7 +45,7 @@ public class RegisterScreen extends Screen {
         }
     }
 
-    private void cretingButton(){
+    void cretingButton(){
     	// Button 'Register now'
         button = new JButton();
         button.setText("Register now");
@@ -62,7 +62,7 @@ public class RegisterScreen extends Screen {
         this.add(button);
     }
 
-    private void creatingTextField(){
+    void creatingTextField(){
     	// TextFields
         nameComplete = new TextFieldScreen(this);
         nameComplete.setBounds(90, 120, 300, 30);
@@ -93,7 +93,7 @@ public class RegisterScreen extends Screen {
         this.setVisible(true);
     }
 
-    private void creatingLabel(){
+    void creatingLabel(){
     	// Labels ('Name' 'Email')
         nameCompleteLabel = new JLabel();
         nameCompleteLabel.setText("Name Complete");
@@ -135,7 +135,7 @@ public class RegisterScreen extends Screen {
 
     @SuppressWarnings("deprecation")
 	@Override
-    public void getInfo() {
+    public String getInfo() {
     	//Info to DataBase
     	StringBuilder sb = new StringBuilder();
 		sb.append(nameComplete.getText());
@@ -149,13 +149,15 @@ public class RegisterScreen extends Screen {
 		sb.append(password.getText());
 		
 		createFile(sb.toString());
+		return sb.toString();
     }
     
     public void verifyFields() {}
     
     @Override
-    public void createFile(String info) {
-    	System.out.println(info);
+    public boolean createFile(String info) {
+    	
+    	return info.contains(";;;;");
     }
     
     public static void main(String[] args){

@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import me.pedrokaua.loginregister.exception.ImagePathException;
+
 public abstract class Screen extends JFrame{
 	private static final long serialVersionUID = 1L;
 	protected ImageIcon imageLateral
@@ -40,7 +42,7 @@ public abstract class Screen extends JFrame{
 		this.setVisible(true);
 	}
 
-	private void creatingPanel(){
+	void creatingPanel(){
 		//Panel Lateral with contrast.
 		panelLateral = new JPanel(){
 		private static final long serialVersionUID = 1L;
@@ -56,7 +58,7 @@ public abstract class Screen extends JFrame{
 				try {
 					g2d.drawImage(imageLateral.getImage(), 85, 200, null);
 		        }catch(Exception e) {
-		        	System.out.println("add image path");
+		        	throw new ImagePathException();
 		        }
 			}
 		};
@@ -98,10 +100,10 @@ public abstract class Screen extends JFrame{
 		this.add(signature);	
 	}
 	
-	public abstract void getInfo();
+	public abstract String getInfo();
 
 	public abstract void verifyFields();
 	
-	public abstract void createFile(String info);
+	public abstract boolean createFile(String info);
 	
 }

@@ -10,7 +10,6 @@ public class JButtonScreen extends JButton implements MouseListener{
 	
 	public JButtonScreen() {}
 	
-	@Override
     public void mouseClicked(MouseEvent arg0) {}
     public void mouseEntered(MouseEvent arg0) {}
     public void mouseExited(MouseEvent arg0) {}
