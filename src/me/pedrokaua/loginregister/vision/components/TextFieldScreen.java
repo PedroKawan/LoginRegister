@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import me.pedrokaua.loginregister.vision.RegisterScreen;
+import me.pedrokaua.loginregister.vision.Screen;
 
 public class TextFieldScreen extends TextField implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	
-	public TextFieldScreen(RegisterScreen screen){
+	public TextFieldScreen(Screen screen){
         this.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
         this.addActionListener(new ActionListener(){
             @Override

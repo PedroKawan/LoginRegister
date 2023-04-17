@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPasswordField;
 
-import me.pedrokaua.loginregister.vision.RegisterScreen;
+import me.pedrokaua.loginregister.vision.Screen;
 
 public class JPasswordFieldScreen extends JPasswordField{
 	private static final long serialVersionUID = 1L;
 
-	public JPasswordFieldScreen(RegisterScreen screen){
+	public JPasswordFieldScreen(Screen screen){
         this.setFont(new Font(Font.DIALOG, Font.CENTER_BASELINE, 14));
         this.addActionListener(new ActionListener(){
             @Override 

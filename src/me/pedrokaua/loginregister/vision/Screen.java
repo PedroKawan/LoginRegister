@@ -18,6 +18,9 @@ public abstract class Screen extends JFrame{
 	protected ImageIcon imageLateral
 		= new ImageIcon("src/me/pedrokaua/loginregister/imagens/computer.png");
 	
+	protected GradientPaint panelLateralGradient
+		= new GradientPaint(0, 0, new Color(0, 0, 0), 300, 600, new Color(255, 255, 255));
+	
 	protected JPanel panelLateral;	
 	protected JPanel panelCentral;
 	
@@ -50,9 +53,7 @@ public abstract class Screen extends JFrame{
 			@Override
 			public void paint(Graphics arg0) {
 				Graphics2D g2d = (Graphics2D) arg0;
-				GradientPaint gradient 
-					= new GradientPaint(0, 0, new Color(240, 0, 240), 800, 500, new Color(255, 0, 0));
-				g2d.setPaint(gradient);
+				g2d.setPaint(panelLateralGradient);
 				g2d.fillRect(0, 0, 300, 600);
 				
 				try {
@@ -93,7 +94,7 @@ public abstract class Screen extends JFrame{
 		signature = new JLabel();
 		signature.setText("Created by: Pedro Kauã Silva dos Santos");
 		signature.setForeground(new Color(255, 255, 255, 127));
-		signature.setBounds(0, 540, 400, 20);
+		signature.setBounds(5, 540, 400, 20);
 
 		this.add(labelCentral);
 		this.add(labelLateral);
