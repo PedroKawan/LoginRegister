@@ -14,6 +14,7 @@ public class TextFieldScreen extends TextField implements MouseListener{
 	
 	public TextFieldScreen(Screen screen){
         this.setFont(new Font(Font.DIALOG, Font.PLAIN, 14));
+        
         this.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent arg0) {

@@ -39,7 +39,7 @@ public class RegisterScreen extends Screen {
 		});
     }
     
-    void define() {
+    protected void define() {
     	// 'Screen' attributes
         labelLateral.setText("REGISTER");
         this.setTitle("REGISTER SCREEN");
@@ -155,6 +155,7 @@ public class RegisterScreen extends Screen {
     public String getInfo() {
     	//Info to DataBase
     	StringBuilder sb = new StringBuilder();
+    	sb.append("{");
 		sb.append(nameComplete.getText());
 		sb.append(";");
 		sb.append(nameUser.getText());
@@ -164,7 +165,7 @@ public class RegisterScreen extends Screen {
 		sb.append(email.getText());
 		sb.append(";");
 		sb.append(password.getText());
-		
+		sb.append("}");
 		createFile(sb.toString());
 		System.out.println(sb.toString());
 		return sb.toString();

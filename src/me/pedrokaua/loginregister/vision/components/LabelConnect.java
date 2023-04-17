@@ -1,6 +1,7 @@
 package me.pedrokaua.loginregister.vision.components;
 
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -24,7 +25,6 @@ public class LabelConnect extends JLabel implements MouseListener{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		screenCurrent.dispose();
-		
 		if (screenCurrent instanceof LoginScreen) {
 			screen = new RegisterScreen();
 		} else {

@@ -41,11 +41,12 @@ public class LoginScreen extends Screen{
 	}
 	
 
-	private void define() {
+	protected void define() {
     	// 'Screen' attributes
         labelLateral.setText("LOGIN");
         this.setTitle("LOGIN SCREEN");
-        labelCentral.setText("Hello user");
+        labelCentral.setText("Hello user!");
+        labelCentral.setLocation(60, labelCentral.getY());
         try {
         	imageLateral =
         			new ImageIcon("src/me/pedrokaua/loginregister/imagens/login.png");
@@ -114,9 +115,12 @@ public class LoginScreen extends Screen{
 	@Override
 	public String getInfo() {
 		StringBuilder sb = new StringBuilder();
+		sb.append("{");
 		sb.append(email.getText());
 		sb.append(";");
 		sb.append(password.getText());		
+		sb.append("}");
+		
 		System.out.println(sb.toString());
 		return sb.toString();
 	}

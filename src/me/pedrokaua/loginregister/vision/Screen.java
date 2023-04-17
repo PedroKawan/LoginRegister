@@ -17,16 +17,16 @@ public abstract class Screen extends JFrame{
 	private static final long serialVersionUID = 1L;
 	protected ImageIcon imageLateral
 		= new ImageIcon("src/me/pedrokaua/loginregister/imagens/computer.png");
+	protected int imagePositionX = 85;
+	protected int imagePositionY = 200;
+	
 	
 	protected GradientPaint panelLateralGradient
 		= new GradientPaint(0, 0, new Color(0, 0, 0), 300, 600, new Color(255, 255, 255));
 	
-	protected JPanel panelLateral;	
-	protected JPanel panelCentral;
 	
-	protected JLabel labelLateral;
-	protected JLabel labelCentral;
-	protected JLabel signature;
+	protected JPanel panelLateral, panelCentral, panelLabelLateral;	
+	protected JLabel labelLateral, labelCentral, signature;
 
 	public Screen(){
 		creatingScreen();
@@ -35,6 +35,7 @@ public abstract class Screen extends JFrame{
 	}
 
 	private void creatingScreen() {
+		//Screen configuration 
 		this.setSize(900, 600);
 		this.setTitle("SCREEN-SCREEN");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -57,7 +58,8 @@ public abstract class Screen extends JFrame{
 				g2d.fillRect(0, 0, 300, 600);
 				
 				try {
-					g2d.drawImage(imageLateral.getImage(), 85, 200, null);
+					g2d.drawImage(imageLateral.getImage(), imagePositionX,
+							imagePositionY, null);
 		        }catch(Exception e) {
 		        	throw new ImagePathException();
 		        }
@@ -68,7 +70,7 @@ public abstract class Screen extends JFrame{
 		panelLateral.setBackground(new Color(240, 0, 240));
 
 		//Panel of Label -> Lateral
-		JPanel panelLabelLateral = new JPanel();
+		panelLabelLateral = new JPanel();
 		panelLabelLateral.setBounds(600, 350, 300, 24);
 		panelLabelLateral.setBackground(new Color(220, 220, 220, 100));
 		this.add(panelLabelLateral);
@@ -84,13 +86,13 @@ public abstract class Screen extends JFrame{
 		labelLateral.setForeground(Color.BLACK);
 
 		labelCentral = new JLabel();
-		labelCentral.setBounds(50, 40, 100, 24);
+		labelCentral.setBounds(50, 40, 110, 24);
 		labelCentral.setHorizontalAlignment(JLabel.CENTER);
 		labelCentral.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
 		labelCentral.setText("label");
 		labelCentral.setForeground(Color.WHITE);
 
-		//PT-BR signature
+		//My signature
 		signature = new JLabel();
 		signature.setText("Created by: Pedro Kauã Silva dos Santos");
 		signature.setForeground(new Color(255, 255, 255, 127));
@@ -100,6 +102,8 @@ public abstract class Screen extends JFrame{
 		this.add(labelLateral);
 		this.add(signature);	
 	}
+	
+	protected abstract void define();
 	
 	public abstract String getInfo();
 
