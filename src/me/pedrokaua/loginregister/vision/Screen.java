@@ -43,6 +43,8 @@ public abstract class Screen extends JFrame{
 		this.setResizable(false);
 		this.setLocationRelativeTo(null);
 		this.setLayout(null);
+		this.setIconImage(new ImageIcon(
+				getClass().getResource("/me/pedrokaua/loginregister/imagens/iconScreen.png")).getImage());
 		this.setVisible(true);
 	}
 
