@@ -124,15 +124,6 @@ public class LoginScreen extends Screen{
 		System.out.println(sb.toString());
 		return sb.toString();
 	}
-
-	@Override
-	public void verifyFields() {
-	}
-
-	@Override
-	public boolean createFile(String info) {
-		return false;
-	}
 	
 	public static void main(String[] args) {
 		new LoginScreen();

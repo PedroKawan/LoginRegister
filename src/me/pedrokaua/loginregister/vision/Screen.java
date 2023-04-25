@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import me.pedrokaua.loginregister.exception.ImagePathException;
 
@@ -32,6 +33,13 @@ public abstract class Screen extends JFrame{
 		creatingScreen();
 		creatingLabel();
 		creatingPanel();
+	}
+
+	protected void refresh() {
+		SwingUtilities.invokeLater(() -> {
+			repaint();
+			validate();
+		});
 	}
 
 	private void creatingScreen() {
@@ -103,12 +111,6 @@ public abstract class Screen extends JFrame{
 		this.add(signature);	
 	}
 	
-	protected abstract void define();
-	
 	public abstract String getInfo();
-
-	public abstract void verifyFields();
-	
-	public abstract boolean createFile(String info);
 	
 }

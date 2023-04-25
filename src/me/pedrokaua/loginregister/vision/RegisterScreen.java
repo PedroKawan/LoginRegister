@@ -166,16 +166,9 @@ public class RegisterScreen extends Screen {
 		sb.append(";");
 		sb.append(password.getText());
 		sb.append("}");
-		createFile(sb.toString());
 		System.out.println(sb.toString());
 		return sb.toString();
     }
+
     
-    public void verifyFields() {}
-    
-    @Override
-    public boolean createFile(String info) {
-    	
-    	return info.contains(";;;;");
-    }
 }

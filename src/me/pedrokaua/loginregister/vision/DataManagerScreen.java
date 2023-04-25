@@ -3,29 +3,20 @@ package me.pedrokaua.loginregister.vision;
 import java.awt.Color;
 import java.awt.GradientPaint;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 public class DataManagerScreen extends Screen {
 	private static final long serialVersionUID = 1L;
 
 	public DataManagerScreen() {
 		define();
-	}
-	
-	@Override
-	public String getInfo() {
-		return null;
+		creatingTable();
+		this.refresh();
 	}
 
-	@Override
-	public void verifyFields() {
-		
-	}
-
-	@Override
-	public boolean createFile(String info) {
-		return false;
-	}
 	
-	@Override
 	public void define() {
 	    this.setTitle("DATABASE SCREEN");
 	    
@@ -44,6 +35,29 @@ public class DataManagerScreen extends Screen {
 	}
 
 	
+	private void creatingTable() {
+		//Creating table info
+		String[] identifiers = {"NameComplete", "UseName", "Gender", "BirthDate", "Email", "Password"};
+		DefaultTableModel model = new DefaultTableModel();
+		model.setColumnIdentifiers(identifiers);
+		
+		JTable table = new JTable(model);
+		table.setDefaultRenderer(Object.class, new RenderofTable());
+		
+		JScrollPane pane = new JScrollPane(table);
+		pane.setBounds(20, 340, 660, 200);
+		pane.setBackground(new Color(0, 150, 0));
+		this.add(pane);
+		
+		for (int i = 0; i < 40; i++) {
+			model.addRow(identifiers);
+		}
+	}
+	
+	@Override
+	public String getInfo() {
+		return null;
+	}
 	public static void main(String[] args) {
 		new DataManagerScreen();
 	}
