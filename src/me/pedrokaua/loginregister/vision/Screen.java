@@ -105,12 +105,6 @@ public abstract class Screen extends JFrame{
 		this.add(signature);	
 	}
 	
-	protected abstract void define();
-	
 	public abstract String getInfo();
 
-	public abstract void verifyFields();
-	
-	public abstract boolean createFile(String info);
-	
 }
