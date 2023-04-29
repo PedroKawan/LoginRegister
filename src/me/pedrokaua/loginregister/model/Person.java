@@ -1,18 +1,20 @@
 package me.pedrokaua.loginregister.model;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Person {
 	
 	private String name;
 	private int age;
 	private char gender;
-	private Calendar birth;
+	private LocalDate birth;
 	
-	public Person(String name, char gender, Calendar birth) {
+	public Person(String name, char gender, LocalDate birth) {
 		this.setName(name);
 		this.setGender(gender);
 		this.setBirth(birth);
+		birth.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		this.defineAge(birth);
 	}
 	
@@ -30,14 +32,13 @@ public class Person {
 		this.age = age;
 	}
 	
-	public void defineAge(Calendar birth) {
-		Calendar date = Calendar.getInstance();
-		date.set(Calendar.MONTH, date.get(Calendar.MONTH) + 1);
+	public void defineAge(LocalDate birth) {
+		LocalDate date = LocalDate.now();
 		//Birthday verification
-		int newAge = date.get(Calendar.YEAR) - birth.get(Calendar.YEAR);
-		boolean monthSmaller = date.get(Calendar.MONTH) < birth.get(Calendar.MONTH);
-		boolean monthEquals = date.get(Calendar.MONTH) == birth.get(Calendar.MONTH);
-		boolean daySmaller = date.get(Calendar.DATE) < birth.get(Calendar.DATE);
+		int newAge = date.getDayOfMonth() - birth.getDayOfMonth();
+		boolean monthSmaller = date.getMonthValue() < birth.getMonthValue();
+		boolean monthEquals = date.getMonthValue() == birth.getMonthValue();
+		boolean daySmaller = date.getDayOfMonth() < birth.getDayOfMonth();
 		
 		
 		if(monthSmaller) {
@@ -56,18 +57,19 @@ public class Person {
 	public void setGender(char gender) {
 		this.gender = gender;
 	}
-	public Calendar getBirth() {
+	public LocalDate getBirth() {
 		return birth;
 	}
-	public void setBirth(Calendar birth) {
+	public void setBirth(LocalDate birth) {
 		this.birth = birth;
 	}
 	
 	public boolean happyBirthday() {
-		Calendar date = Calendar.getInstance();
+		LocalDate date = LocalDate.now();
 		
-		boolean monthBirthday = birth.get(Calendar.MONTH) == date.get(Calendar.MONTH);
-		boolean dayBirthday = birth.get(Calendar.DATE) == date.get(Calendar.DATE);
+		
+		boolean monthBirthday = birth.getMonthValue() == date.getMonthValue();
+		boolean dayBirthday = birth.getDayOfMonth() == date.getDayOfMonth();
 		
 		if(monthBirthday && dayBirthday) {
 			this.setAge(this.getAge() + 1);

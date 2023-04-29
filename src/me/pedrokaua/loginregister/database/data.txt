@@ -1,0 +1,2 @@
+{namecomplete=Pedro Kaua Silva dos Santos;username=Pedro Kawan;gender=M;birthdate=2004-09-20;email=pedro@gmail.com;password=pedro123;}
+{namecomplete=João Vitor ;username=Joao;gender=M;birthdate=2003-03-05;email=joao@gmail.com;password=joao123;}

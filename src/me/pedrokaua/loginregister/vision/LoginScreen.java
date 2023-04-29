@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
+import me.pedrokaua.loginregister.database.DataBase;
+import me.pedrokaua.loginregister.model.User;
 import me.pedrokaua.loginregister.vision.components.JButtonScreen;
 import me.pedrokaua.loginregister.vision.components.JPasswordFieldScreen;
 import me.pedrokaua.loginregister.vision.components.LabelConnect;
@@ -24,7 +26,6 @@ public class LoginScreen extends Screen{
 	LabelConnect connectionScreens;
 	
 	JButtonScreen button;
-	
 	RegisterScreen registerScreen;
 	
 	public LoginScreen(){
@@ -60,6 +61,7 @@ public class LoginScreen extends Screen{
 	private void creatingTextField() {
 		email = new TextFieldScreen(this);
         email.setBounds(140, 160, 300, 30);
+        email.addMouseListener(email);
         
         password = new JPasswordFieldScreen(this);
         password.setBounds(140, 260, 300, 30);
@@ -87,7 +89,7 @@ public class LoginScreen extends Screen{
 	
 	private void creatingConnectScreen() {
 		//Connect 'register and login' screens with label
-		connectionScreens = new LabelConnect(this, registerScreen);
+		connectionScreens = new LabelConnect(this, "register");
         connectionScreens.setText("Register now!");
         connectionScreens.setBounds(340, 334, 100, 20);
         connectionScreens.setFont(new Font(Font.DIALOG, Font.BOLD, 15));
@@ -113,20 +115,37 @@ public class LoginScreen extends Screen{
 	
 	@SuppressWarnings("deprecation")
 	@Override
-	public String getInfo() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("{");
-		sb.append(email.getText());
-		sb.append(";");
-		sb.append(password.getText());		
-		sb.append("}");
+	public boolean getInfo() {
+		String ema = email.getText();
+		String pas = password.getText();
 		
-		System.out.println(sb.toString());
-		return sb.toString();
+		if(!verifyVoid(email) | !verifyPassword(pas)){
+			return false;
+		}
+		User user = new User(
+					ema,
+					pas
+			);
+		return DataBase.getInstance().getUsers().contains(user);
 	}
-
-	public static void main(String[] args) {
-		new LoginScreen();
-	}
+	
+	
+	boolean verifyPassword(String password){
+    	if (password == null 
+    			|| password.equals("")) {
+    		this.password.setBackground(Color.RED);
+    		return false;
+    	}
+    	return true;
+    }
+	
+	 boolean verifyVoid(TextFieldScreen field){
+	    	if (field.getText() == null 
+	    			|| field.getText().equals("")) {
+	    		field.setBackground(Color.RED);
+	    		return false;
+	    	}
+	    	return true;
+	    }
 	
 }

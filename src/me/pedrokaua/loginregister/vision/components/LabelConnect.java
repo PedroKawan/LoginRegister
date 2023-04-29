@@ -6,6 +6,8 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 
+import me.pedrokaua.loginregister.database.DataBase;
+import me.pedrokaua.loginregister.vision.DataManagerScreen;
 import me.pedrokaua.loginregister.vision.LoginScreen;
 import me.pedrokaua.loginregister.vision.RegisterScreen;
 import me.pedrokaua.loginregister.vision.Screen;
@@ -14,20 +16,23 @@ public class LabelConnect extends JLabel implements MouseListener{
 	private static final long serialVersionUID = 1L;
 	
 	Screen screenCurrent;
-	Screen screen;
+	String type;
 	
-	public LabelConnect(Screen screenCurrent,Screen screen){	
+	public LabelConnect(Screen screenCurrent, String type){	
 		this.screenCurrent = screenCurrent;
-		this.screen = screen;
+		this.type = type;
 	}
-
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+//		DataBase.getInstance().clear();
 		screenCurrent.dispose();
-		if (screenCurrent instanceof LoginScreen) {
-			screen = new RegisterScreen();
+		if (this.type.equalsIgnoreCase("login")) {
+			new LoginScreen();
+		} else if (this.type.equalsIgnoreCase("register")) {
+			new RegisterScreen();
 		} else {
-			screen = new LoginScreen();
+			new DataManagerScreen();
 		}
 	}
 

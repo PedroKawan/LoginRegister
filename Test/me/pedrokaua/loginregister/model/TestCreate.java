@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -12,29 +13,24 @@ import org.junit.jupiter.api.Test;
 class TestCreate {
 	User user;
 	Person person;
-	Calendar birth = Calendar.getInstance();
+	LocalDate birth;
 	
 	@BeforeEach
 	void add() {
-		birth.set(Calendar.YEAR, 2004);
-		birth.set(Calendar.MONTH, Calendar.SEPTEMBER);
-		birth.set(Calendar.DATE, 20);
-		
-		user = new User("Pedro Kauã Silva dos Santos",
-				"Pedro Kawan", "me@example.com", "example123",
-				'M', birth);
+		LocalDate date = LocalDate.of(2004, 9, 20);
+		user = new User("Pedro Kauã Silva dos Santos", "Pedro Kawan",
+				'M', date, "me@example.com", "example123");
 		
 		person = new Person("Pedro Kauã Silva dos Santos",
-				'M', birth);
+				'M', date);
 	}
 	
 	@Test
 	void testCreatingUser() {
 		
 		assertDoesNotThrow(() -> {
-			user = new User("Pedro Kauã Silva dos Santos",
-				"Pedro Kawan", "me@example.com", "example123",
-				'M', birth);
+			user = new User("Pedro Kauã Silva dos Santos", "Pedro Kawan",
+					'M', birth, "me@example.com", "example123");
 		});
 	}
 	
@@ -72,7 +68,7 @@ class TestCreate {
 	}
 	@Test
 	void testBirthdayMoth() {
-		birth.set(Calendar.MONTH, 3);
+		birth = LocalDate.of(birth.getYear(), 3, 20);
 		Person person = new Person("Pedro Kauã Silva dos Santos",
 				'M', birth);
 		assertEquals(19, person.getAge());
@@ -80,8 +76,7 @@ class TestCreate {
 	
 	@Test
 	void testNotBirthdayDay() {
-		birth.set(Calendar.MONTH, 4);
-		birth.set(Calendar.DATE, 30);
+		birth = LocalDate.of(birth.getYear(), 4, 30);
 		Person person = new Person("Pedro Kauã Silva dos Santos",
 				'M', birth);
 		assertEquals(18, person.getAge());
@@ -89,8 +84,7 @@ class TestCreate {
 	
 	@Test
 	void testHappyBirthdayDay() {
-		birth.set(Calendar.MONTH, 4);
-		birth.set(Calendar.DATE, 12);
+		birth = LocalDate.of(birth.getYear(), 4, 12);
 		Person person = new Person("Pedro Kauã Silva dos Santos",
 				'M', birth);
 		assertEquals(19, person.getAge());

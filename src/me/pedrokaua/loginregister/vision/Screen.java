@@ -10,7 +10,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
+import me.pedrokaua.loginregister.database.DataBase;
 import me.pedrokaua.loginregister.exception.ImagePathException;
 
 public abstract class Screen extends JFrame{
@@ -20,6 +22,7 @@ public abstract class Screen extends JFrame{
 	protected int imagePositionX = 85;
 	protected int imagePositionY = 200;
 	
+//	public DataBase database = new DataBase();
 	
 	protected GradientPaint panelLateralGradient
 		= new GradientPaint(0, 0, new Color(0, 0, 0), 300, 600, new Color(255, 255, 255));
@@ -32,6 +35,13 @@ public abstract class Screen extends JFrame{
 		creatingScreen();
 		creatingLabel();
 		creatingPanel();
+	}
+
+	protected void refresh() {
+		SwingUtilities.invokeLater(() -> {
+			repaint();
+			validate();
+		});
 	}
 
 	private void creatingScreen() {
@@ -105,6 +115,11 @@ public abstract class Screen extends JFrame{
 		this.add(signature);	
 	}
 	
-	public abstract String getInfo();
-
+    public void entered() {
+    	DataBase.getInstance().exportData();
+    	new DataManagerScreen();
+    }
+	
+	public abstract boolean getInfo();
+	
 }

@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 import me.pedrokaua.loginregister.vision.Screen;
 
@@ -18,7 +19,14 @@ public class JButtonScreen extends JButton implements MouseListener{
 	}
 	
     public void mouseClicked(MouseEvent arg0) {
-    	screen.getInfo();
+    	boolean run = screen.getInfo();
+    	if (run) {
+    		screen.dispose();
+//    		screen.database.clear();
+    		screen.entered();
+    	} else {
+    		JOptionPane.showMessageDialog(screen, "Incorrect argumentisin!");
+    	}
     }
     public void mouseEntered(MouseEvent arg0) {
     	this.setForeground(new Color(100, 200, 255));

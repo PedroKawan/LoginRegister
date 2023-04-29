@@ -1,5 +1,6 @@
 package me.pedrokaua.loginregister.vision.components;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -26,7 +27,7 @@ public class TextFieldScreen extends TextField implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent arg0) {
-        this.setText("");
+        this.setBackground(Color.WHITE);
     }
     
     public void mouseEntered(MouseEvent arg0) {}
