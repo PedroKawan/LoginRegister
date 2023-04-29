@@ -7,10 +7,12 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.TableCellRenderer;
 
 public class RenderofTable implements TableCellRenderer{
 
+	
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
@@ -24,6 +26,12 @@ public class RenderofTable implements TableCellRenderer{
 			panel.setBackground(new Color(0, 150, 0, 60));
 		}
 		
+		SwingUtilities.invokeLater(() -> {
+			table.repaint();
+			table.validate();
+			panel.repaint();
+			panel.validate();
+		});
 		return panel;
 	}
 	
