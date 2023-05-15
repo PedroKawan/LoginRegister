@@ -75,6 +75,7 @@ public abstract class Screen extends JFrame{
 		        }catch(Exception e) {
 		        	throw new ImagePathException();
 		        }
+				refresh();
 			}
 		};
 		panelLateral.setSize(300, 600);
