@@ -1,7 +1,6 @@
 # LoginRegister
 
 Olá, esse projeto foi criado com intensão de exercitar meus conhecimentos e manipulação de dados!
-Esse projeto foi um primeiro passo antes de entrar no mundo dos Bancos de Dados! 
 
 # Technologies/libs
 
